@@ -1,3 +1,9 @@
 namespace: my-namespace
 region: us-east-1
 environment: development
+node:
+  instance_type: t2.micro
+  ami_id: ami-0abcdef1234567890
+  key_name: my-key-pair
+  security_groups:
+    - sg-0123456789abcdef0
