@@ -2,8 +2,12 @@ namespace: my-namespace
 region: us-east-1
 environment: development
 node:
-  instance_type: t2.micro
+  instance_type: t3.large
   ami_id: ami-0abcdef1234567890
-  key_name: my-key-pair
+  key_name: development-key
+  user_data: |
+    #!/bin/bash
+    echo "Hello, World!" > /var/www/html/index.html
   security_groups:
     - sg-0123456789abcdef0
+    - sg-0fedcba9876543210
