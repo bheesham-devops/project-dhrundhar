@@ -1,13 +1,22 @@
 namespace: my-namespace
 region: us-east-1
-environment: development
+project: my-project
 node:
   instance_type: t3.large
   ami_id: ami-0abcdef1234567890
-  key_name: development-key
+  key_name: my-key-pair
   user_data: |
     #!/bin/bash
-    echo "Hello, World!" > /var/www/html/index.html
-  security_groups:
-    - sg-0123456789abcdef0
-    - sg-0fedcba9876543210
+    apt update
+    apt install -y nginx
+    systemctl start nginx
+    systemctl enable nginx
+  tags:
+    Environment: Development
+    Project: my-project
+Environment:
+  variables:
+    APP_ENV: development
+    DB_HOST: dev-db.my-project.local
+    DB_PORT: 5432
+    DB_USER
